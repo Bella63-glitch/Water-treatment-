@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>About Us | Rizara Technologies</title> 
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&amp;display=swap" rel="stylesheet"> 
+  <style>
+        /* ======================================================= */
+        /* BASE & VARIABLES (Consistent & Optimized) */
+        /* ======================================================= */
+        :root {
+            --primary-color: #008000; /* Rizara Green */
+            --secondary-color: #FFC000; /* Rizara Yellow */
+            --text-dark: #1a1a1a;
+            --text-light: #ffffff;
+            --bg-neutral: #f8f8f8;
+            --shadow-float: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+            /* Service Specific Colors */
+            --solar-accent: #ff8c00; 
+            --water-accent: #1e90ff; 
+            --pump-accent: #8a2be2; 
+        }
+        
+        /* Keyframe for Hero Button Pulse */
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 192, 0, 0.4); }
+            70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(255, 192, 0, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 192, 0, 0); }
+        }
+
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            color: var(--text-dark); 
+            line-height: 1.7; 
+            background-color: var(--bg-neutral);
+        }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        section { padding: 100px 0; overflow: hidden; }
+        .section-title { 
+            font-size: 3.2em; font-weight: 800; text-align: center; margin-bottom: 70px; 
+            color: var(--primary-color); position: relative;
+        }
+        .section-title::after {
+            content: ''; display: block; width: 100px; height: 5px;
+            background: var(--secondary-color); margin: 20px auto 0; border-radius: 3px;
+            transition: var(--transition-smooth); 
+        }
+        
+        /* Buttons - Enhanced */
+        .btn-primary { 
+            background-color: var(--secondary-color); color: var(--text-dark); 
+            padding: 15px 40px; text-decoration: none; border-radius: 50px; 
+            font-weight: 600; transition: var(--transition-smooth); display: inline-block;
+            box-shadow: 0 6px 15px rgba(255, 192, 0, 0.5);
+        }
+        .btn-primary:hover { 
+            background-color: var(--primary-color); color: var(--text-light); 
+            transform: translateY(-4px) scale(1.02); 
+            box-shadow: 0 10px 25px rgba(0, 128, 0, 0.5);
+        }
+        /* Hero CTA Pulse Effect */
+        .hero-services .btn-primary {
+            animation: pulse 2s infinite; 
+        }
+
+        /* ======================================================= */
+        /* 0. HEADER & NAVIGATION (Sticky & Scroll Effect) */
+        /* ======================================================= */
+        .main-header {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            background-color: transparent;
+            transition: background-color 0.4s, box-shadow 0.4s;
+        }
+        /* Class added by JS on scroll (Placeholder) */
+        .main-header.scrolled {
+            background-color: rgba(0, 0, 0, 0.95);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            padding: 15px 0;
+        }
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        /* NEW LOGO STYLES (Kept for text fallback, but logo-link removed) */
+        .logo-link {
+            display: block;
+            line-height: 0;
+        }
+        .logo-img {
+            height: 45px; /* Adjust size as needed */
+            width: auto;
+            transition: transform 0.3s;
+        }
+        .main-header.scrolled .logo-img {
+             /* Slightly shrink logo on scroll for effect */
+            transform: scale(0.95); 
+        }
+
+        /* Added a text placeholder for the logo area */
+        .logo-placeholder {
+            font-size: 2em;
+            font-weight: 900;
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .main-header.scrolled .logo-placeholder {
+            color: var(--text-light);
+        }
+
+        .hamburger-icon {
+            font-size: 2em;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: var(--transition-smooth);
+        }
+        .main-header.scrolled .hamburger-icon {
+            color: var(--secondary-color); /* Change color when scrolled */
+        }
+        .hamburger-icon:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Placeholder Menu Structure */
+        .menu-overlay {
+            position: fixed; top: 0; right: 0; width: 0; height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 9999; overflow-x: hidden; transition: 0.5s;
+        }
+        .menu-overlay.active { width: 300px; }
+        .menu-overlay .closebtn {
+            position: absolute; top: 20px; right: 45px; font-size: 60px;
+            text-decoration: none; color: var(--text-light); line-height: 0.6;
+        }
+        .menu-content { padding: 100px 40px; }
+        .menu-content a {
+            padding: 12px 0; /* Adjusted padding for better touch targets */
+            text-decoration: none; font-size: 1.5em;
+            color: var(--text-light); display: block; transition: 0.3s;
+            font-weight: 600; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .menu-content a:hover, .menu-content a.active {
+            color: var(--secondary-color); padding-left: 15px;
+        }
+
+
+        /* ======================================================= */
+        /* 1. HERO SECTION (Overlay Darkened) */
+        /* ======================================================= */
+        .hero-services {
+            /* Increased overlay opacity from 0.7 to 0.75 for better contrast */
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('https://i.postimg.cc/5t1hwTWJ/IMG-20251211-151029.png') no-repeat center center/cover;
+            color: var(--text-light); 
+            padding: 180px 0 120px;
+            text-align: center;
+        }
+        .hero-services h1 { font-size: 4.5em; font-weight: 900; text-shadow: 0 3px 10px rgba(0,0,0,0.8); }
+        .hero-services p { font-size: 1.4em; }
+
+        /* ======================================================= */
+        /* 2. SERVICE NAVIGATION GRID (Minimalist Design) */
+        /* ======================================================= */
+        .service-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px;
+        }
+        .minimal-service-card {
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+            background-color: var(--text-light); border-radius: 12px; padding: 0; 
+            overflow: hidden; text-decoration: none; color: var(--text-dark);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: var(--transition-smooth);
+        }
+        .minimal-service-card:hover {
+            transform: translateY(-8px); 
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        .card-accent-bar {
+            width: 100%; height: 12px; background-color: var(--primary-color); transition: var(--transition-smooth);
+        }
+        .card-body { padding: 40px 30px; }
+        .minimal-service-card .icon-wrapper {
+            font-size: 4em; color: var(--primary-color); margin-bottom: 20px;
+            line-height: 1; transition: color 0.3s;
+        }
+        .minimal-service-card h3 {
+            font-size: 1.6em; font-weight: 700; margin: 0 0 10px; color: var(--text-dark);
+        }
+        .minimal-service-card p {
+            font-size: 0.95em; color: #666; margin-bottom: 0;
+        }
+
+        /* Hover Effects */
+        .minimal-service-card:hover .card-accent-bar.solar { background-color: var(--solar-accent); }
+        .minimal-service-card:hover .icon-wrapper.solar { color: var(--solar-accent); }
+        .minimal-service-card:hover .card-accent-bar.water { background-color: var(--water-accent); }
+        .minimal-service-card:hover .icon-wrapper.water { color: var(--water-accent); }
+        .minimal-service-card:hover .card-accent-bar.pump { background-color: var(--pump-accent); }
+        .minimal-service-card:hover .icon-wrapper.pump { color: var(--pump-accent); }
+
+
+        /* ======================================================= */
+        /* 3. LIFECYCLE SUPPORT (Enhanced Hover Effect) */
+        /* ======================================================= */
+        .lifecycle-grid {
+            display: flex; justify-content: space-around; gap: 30px; margin-top: 50px; text-align: center;
+        }
+        .lifecycle-item {
+            flex: 1; padding: 30px; background-color: var(--text-light); border-radius: 10px;
+            border-left: 4px solid var(--secondary-color); box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition-smooth);
+        }
+        .lifecycle-item:hover {
+            transform: scale(1.03); 
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--primary-color); 
+        }
+        .lifecycle-item h4 {
+            color: var(--primary-color); font-size: 1.5em; transition: color 0.3s;
+        }
+        .lifecycle-item:hover h4 {
+            color: var(--secondary-color); 
+        }
+
+
+        /* ======================================================= */
+        /* 4. BENEFITS (Overlay Darkened) */
+        /* ======================================================= */
+        .benefits-section {
+            /* Increased overlay opacity from 0.6 to 0.7 for better contrast */
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://i.postimg.cc/L5zbGsmF/c4845d0533d5735f08064a57493f1932.jpg') no-repeat center center/cover;
+            color: var(--text-light);
+        }
+        .benefits-section .section-title { color: var(--secondary-color); }
+        .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .benefit-item {
+            padding: 25px; background-color: rgba(255, 255, 255, 0.1); border-radius: 8px;
+            transition: var(--transition-smooth); border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .benefit-item:hover {
+            background-color: rgba(255, 255, 255, 0.2); 
+        }
+        .benefit-item h4 { color: var(--secondary-color); margin-top: 0; font-size: 1.4em; }
+        
+        /* ======================================================= */
+        /* 5. FINAL CTA (Enhanced Glow) */
+        /* ======================================================= */
+        .footer-cta {
+            background-color: var(--secondary-color); padding: 80px 0; text-align: center;
+        }
+        .footer-cta .btn-primary {
+            background-color: var(--primary-color) !important; 
+            color: var(--text-light) !important;
+            box-shadow: 0 0 0 0 rgba(0, 128, 0, 0.7);
+            transition: box-shadow 0.5s ease-in-out, transform 0.3s;
+        }
+        .footer-cta .btn-primary:hover {
+            box-shadow: 0 0 15px 5px rgba(0, 128, 0, 0.8), 0 10px 25px rgba(0, 128, 0, 0.5); 
+            transform: translateY(-4px) scale(1.02);
+        }
+
+
+        /* ======================================================= */
+        /* MOBILE RESPONSIVENESS */
+        /* ======================================================= */
+        @media (max-width: 992px) {
+            .hero-services h1 { font-size: 3em; }
+            .service-grid, .benefits-grid, .lifecycle-grid { grid-template-columns: 1fr; gap: 30px; }
+            .menu-overlay.active { width: 100%; }
+        }
+    </style> 
+ </head> 
+ <body> 
+  <header class="main-header" id="mainHeader"> 
+   <div class="container main-nav"> 
+    <a href="/" class="logo-placeholder">Rizara Technologies</a> 
+    
+    <span class="hamburger-icon" onclick="openNav()">☰</span> 
+   </div> 
+  </header> 
+  
+  <div id="myNav" class="menu-overlay"> 
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a> 
+    <div class="menu-content"> 
+        <a href="/">Home</a> 
+        <a href="/services.html">Services</a> 
+        <a href="/about.html" class="active">About Us</a> <a href="/contact.html">Contact Us</a> 
+        <hr style="margin: 20px 0; border-color: rgba(255,255,255,0.1)">
+        <a href="/services/solar.html">Solar Power</a> 
+        <a href="/services/water-treatment.html">Water Treatment</a> 
+        <a href="/services/pumps.html">Pump &amp; Borehole</a> 
+    </div> 
+  </div> 
+  
+  <section class="hero-services"> 
+   <div class="container"> 
+    <h1 data-aos="fade-up" data-aos-duration="1000">Integrated Solutions for Sustainable Water and Energy</h1> 
+    <p data-aos="fade-up" data-aos-delay="300">Your single source for comprehensive solar power, advanced water treatment, and reliable infrastructure services across East Africa.</p> 
+    <a href="#services-grid" class="btn-primary" data-aos="zoom-in" data-aos-delay="500">Explore Our Expertise ↓</a> 
+   </div> 
+  </section> 
+  
+  <section id="services-grid" style="background-color: var(--bg-neutral);"> 
+   <div class="container"> 
+    <h2 class="section-title" data-aos="fade-up">Our Core Service Areas</h2> 
+    <div class="service-grid"> <a href="/services/solar.html" class="minimal-service-card" data-aos="fade-up" data-aos-delay="100"> 
+      <div class="card-accent-bar solar"></div> 
+      <div class="card-body"> 
+       <div class="icon-wrapper solar">
+         ⚡ 
+       </div> 
+       <h3>Solar Power &amp; Renewable Energy</h3> 
+       <p>Turnkey solutions for energy independence, including system design, installation, and reliable power storage.</p> 
+      </div> </a> <a href="/services/water-treatment.html" class="minimal-service-card" data-aos="fade-up" data-aos-delay="300"> 
+      <div class="card-accent-bar water"></div> 
+      <div class="card-body"> 
+       <div class="icon-wrapper water">
+         💧 
+       </div> 
+       <h3>Water Treatment &amp; Purification</h3> 
+       <p>Advanced systems for filtration, purification, and making water potable for safe consumption and commercial use.</p> 
+      </div> </a> <a href="/services/pumps.html" class="minimal-service-card" data-aos="fade-up" data-aos-delay="500"> 
+      <div class="card-accent-bar pump"></div> 
+      <div class="card-body"> 
+       <div class="icon-wrapper pump">
+         ⚗ 
+       </div> 
+       <h3>Pump &amp; Borehole Solutions</h3> 
+       <p>Expert installation and maintenance of borehole pumps, delivery systems, and power supply for consistent water access.</p> 
+      </div> </a> 
+    </div> 
+   </div> 
+  </section> 
+  <section> 
+   <div class="container"> 
+    <h2 class="section-title" data-aos="fade-up">Full Lifecycle Support</h2> 
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 50px; font-size: 1.1em;" data-aos="fade-up" data-aos-delay="200"> Rizara is your end-to-end partner, covering every stage of your infrastructure investment for maximum uptime and longevity. </p> 
+    <div class="lifecycle-grid"> 
+     <div class="lifecycle-item" data-aos="zoom-in" data-aos-delay="100"> 
+      <h4>Installation &amp; Commissioning</h4> 
+      <p>Professional, code-compliant installation of all systems (Solar, Water Treatment, Pumps) by certified engineers.</p> 
+     </div> 
+     <div class="lifecycle-item" data-aos="zoom-in" data-aos-delay="300"> 
+      <h4>Maintenance &amp; Servicing</h4> 
+      <p>Scheduled preventive maintenance contracts to ensure peak efficiency, system health, and minimal operational risk.</p> 
+     </div> 
+     <div class="lifecycle-item" data-aos="zoom-in" data-aos-delay="500"> 
+      <h4>Repair &amp; Overhaul</h4> 
+      <p>Rapid response and expert repair services for all equipment, minimizing downtime and restoring full capacity quickly.</p> 
+     </div> 
+    </div> 
+   </div> 
+  </section> 
+  <section class="benefits-section"> 
+   <div class="container"> 
+    <h2 class="section-title" data-aos="fade-up">Why Choose Our Integrated Approach?</h2> 
+    <div class="benefits-grid"> 
+     <div class="benefit-item" data-aos="fade-right" data-aos-delay="100"> 
+      <h4>Technical Competence</h4> 
+      <p>Our team is adequately advanced, equipped, and ready to deliver services with the highest technical standards.</p> 
+     </div> 
+     <div class="benefit-item" data-aos="fade-right" data-aos-delay="300"> 
+      <h4>Reliability &amp; Uptime</h4> 
+      <p>Our integrated design ensures a robust, reliable water and power supply with guaranteed uptime.</p> 
+     </div> 
+     <div class="benefit-item" data-aos="fade-right" data-aos-delay="500"> 
+      <h4>Cost-Effective Solutions</h4> 
+      <p>By providing end-to-end service, we reduce complexity and offer optimized, cost-effective solutions for clients.</p> 
+     </div> 
+    </div> 
+   </div> 
+  </section> 
+  <section class="footer-cta"> 
+   <div class="container" data-aos="fade-up"> 
+    <h2 style="font-size: 2.5em; margin-bottom: 10px; color: var(--text-dark);">Ready to Start Your Project?</h2> 
+    <p style="font-size: 1.2em; max-width: 700px; margin: 0 auto 30px; color: var(--text-dark);">Contact us today for a free consultation and project assessment.</p> <a href="/contact.html" class="btn-primary">Request a Quote</a> 
+   </div> 
+  </section> 
+  <script>
+        function openNav() {
+            document.getElementById("myNav").classList.add("active");
+        }
+
+        function closeNav() {
+            document.getElementById("myNav").classList.remove("active");
+        }
+
+        // JS for Sticky Header Scroll Effect
+        window.onscroll = function() {
+            const header = document.getElementById("mainHeader");
+            if (window.scrollY > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        };
+    </script> 
+ 
+</body></html>
