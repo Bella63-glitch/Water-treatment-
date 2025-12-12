@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Rizara Technologies Limited - Services</title> 
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&amp;display=swap" rel="stylesheet"> 
+  <style>
+        /* Color Variables based on branding */
+        :root {
+            --color-brand-green: #008000;      /* Dark Green */
+            --color-brand-yellow: #FFC000;     /* Strong Yellow/Gold Accent */
+            --color-header-footer: #1A1A1A;    /* Soft Black/Very Dark Gray for a modern feel */
+            --color-text-dark: #333333;
+            --color-text-light: #ffffff;
+            --color-background-main: #ffffff;  /* Clean White for main content area */
+            --font-primary: 'Roboto', sans-serif;
+            --transition-duration: 0.5s;
+        }
+
+        /* Global Styles and Typography */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--color-text-dark);
+            background-color: var(--color-background-main);
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--color-brand-yellow);
+            display: inline-block;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--color-brand-green);
+            transition: color var(--transition-duration);
+        }
+
+        section {
+            padding: 80px 5%;
+            overflow: hidden;
+        }
+        
+        /* --- Animation Keyframes (Retained) --- */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        #products, #industries, footer {
+            animation: fadeIn 1s ease-out;
+        }
+        #hero h1 {
+            animation: slideUp 0.8s ease-out;
+            font-weight: 900;
+        }
+        #hero p, .cta-button-hero {
+            animation: slideUp 1s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+
+        /* --- Utility Classes --- */
+        .brand-yellow {
+            background-color: var(--color-brand-yellow);
+            color: var(--color-text-dark);
+        }
+        .brand-green {
+            background-color: var(--color-brand-green);
+            color: var(--color-text-light);
+        }
+        .brand-green h2 {
+            color: var(--color-text-light);
+            border-bottom-color: var(--color-brand-yellow);
+        }
+        
+        /* --- Header & Navigation (Transparent - Fix Applied) --- */
+        header {
+            /* Changed to transparent black with slight opacity */
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(5px);
+            color: var(--color-text-light);
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: background var(--transition-duration);
+        }
+
+        header .logo {
+            font-size: 1.6rem;
+            font-weight: 300;
+        }
+        /* Style for the 'Technologies Limited' part, now in a span */
+        header .logo span {
+            font-weight: 700;
+            color: var(--color-brand-yellow);
+        }
+
+        header nav a {
+            color: var(--color-text-light);
+            margin-left: 25px;
+            padding: 8px 15px;
+            transition: color var(--transition-duration), background-color var(--transition-duration);
+            border-radius: 4px;
+        }
+
+        header nav a:hover {
+            color: var(--color-brand-yellow);
+        }
+
+
+        /* --- Hero Section --- */
+        #hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://i.postimg.cc/tTVKxPYj/df74d148e1283b9dd10a5228b6f44b70.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 45vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--color-text-light);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        #hero h1 {
+            color: var(--color-brand-yellow);
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .cta-button-hero {
+            display: inline-block;
+            background-color: var(--color-brand-green);
+            color: var(--color-text-light);
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: background-color var(--transition-duration);
+        }
+        .cta-button-hero:hover {
+            background-color: var(--color-brand-yellow);
+            color: var(--color-header-footer);
+            transform: translateY(-2px);
+        }
+
+        /* --- Products and Services (Split Layout) --- */
+        #products {
+            background-color: var(--color-background-main);
+        }
+
+        .layout-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 30px;
+            border-left: 5px solid var(--color-brand-yellow);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+            animation: scaleIn 0.8s ease-out;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .service-card h3 {
+            color: var(--color-brand-green);
+        }
+
+        .service-feature-block {
+            display: flex;
+            background: #fff;
+            border: 1px solid #ddd;
+            grid-column: 1 / -1;
+            min-height: 250px;
+            transition: box-shadow var(--transition-duration);
+            animation: slideUp 1s ease-out;
+        }
+        .service-feature-block.reverse {
+            flex-direction: row-reverse;
+        }
+        .service-feature-block:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .service-feature-block .text-content {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .service-feature-block .image-placeholder {
+            flex: 1;
+            background-size: cover;
+            background-position: center;
+            min-height: 150px;
+            transition: opacity 0.5s; /* Added for smoother rendering */
+        }
+        
+        /* Specific Image URLs for Feature Blocks (Original Design Restored) */
+        .solar-pumps-img {
+            background-image: url('https://i.postimg.cc/3NzQqBV1/6e0f4503a1c58a5cc439b6bf6d9d15a5.jpg');
+        }
+        .borehole-img {
+            background-image: url('https://i.postimg.cc/sxHgg78S/2571424484799f8001864a79cdd511e1.jpg');
+        }
+
+
+        /* --- Market and Industries --- */
+        #industries {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://i.postimg.cc/GpbtzLvW/8b6319e3784f571f9cf617d4770c8e52.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--color-text-light);
+            padding-top: 50px;
+        }
+        #industries h2 {
+            color: var(--color-text-light);
+            border-bottom-color: var(--color-brand-yellow);
+        }
+
+        .industry-icons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .industry-item {
+            padding: 20px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            transition: background var(--transition-duration), transform var(--transition-duration), box-shadow var(--transition-duration);
+            animation: scaleIn 0.8s ease-out;
+        }
+        .industry-item:hover {
+            background: var(--color-brand-yellow);
+            color: var(--color-text-dark);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .industry-item .icon {
+            font-size: 3rem;
+            color: var(--color-brand-yellow);
+            display: block;
+            margin-bottom: 10px;
+            transition: color var(--transition-duration);
+        }
+        .industry-item:hover .icon {
+            color: var(--color-brand-green);
+        }
+        .industry-item h3 {
+            color: var(--color-brand-yellow);
+            margin-top: 10px;
+            transition: color var(--transition-duration);
+        }
+        .industry-item:hover h3 {
+            color: var(--color-brand-green);
+        }
+
+        /* --- Footer & Contact --- */
+        footer {
+            background: var(--color-header-footer);
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: flex-start;
+            padding: 30px 5%;
+            border-bottom: 1px solid #282828;
+        }
+
+        .contact-details, .client-spotlight {
+            max-width: 45%;
+            padding: 0 15px;
+        }
+
+        .contact-details h3, .client-spotlight h3 {
+            color: var(--color-brand-yellow);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-details p {
+            margin-bottom: 0.5rem;
+        }
+
+        .client-spotlight ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .client-spotlight ul li {
+            padding: 3px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 10px 5%;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+
+        /* --- Responsive Design --- */
+        @media (max-width: 900px) {
+            .layout-grid {
+                grid-template-columns: 1fr;
+            }
+            .service-feature-block {
+                flex-direction: column;
+            }
+            /* Ensures reverse layout also stacks vertically on mobile */
+            .service-feature-block.reverse {
+                flex-direction: column; 
+            }
+            .service-feature-block .image-placeholder {
+                /* Ensures image is visible at the top when stacking */
+                order: -1; 
+            }
+            .service-feature-block.reverse .image-placeholder {
+                /* Ensures image remains at the top even when reversed */
+                order: -1; 
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                padding: 1rem 5%;
+            }
+            header nav {
+                margin-top: 10px;
+            }
+            header nav a {
+                margin-left: 5px;
+                padding: 5px 10px;
+            }
+            
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-grid {
+                flex-direction: column;
+                gap: 30px;
+            }
+            .contact-details, .client-spotlight {
+                max-width: 100%;
+                padding: 0;
+            }
+        }
+    </style> 
+ </head> 
+ <body> 
+  <header> 
+   <div class="logo">
+     Rizara <span>Technologies Limited</span> 
+   </div> 
+   <nav> <a href="#services">Services</a> <a href="#industries">Industries</a> <a href="#products">Products</a> 
+   </nav> 
+  </header> 
+  <main> 
+   <section id="hero"> 
+    <div class="hero-content"> 
+     <h1>Water for life, water to thrive.</h1> 
+     <p>Providing cutting-edge water and solar solutions with extensive market coverage and a global reach.</p> <a href="#contact" class="cta-button-hero">Talk to an Expert</a> 
+    </div> 
+   </section> 
+   <section id="products" class="layout-grid"> 
+    <h2>🛠️ Core Products &amp; Services</h2> 
+    <div class="service-card full-width"> 
+     <h3>Commercial &amp; Industrial Water Treatment</h3> 
+     <p>We deliver truly sustainable water management plans, not just an end-of-pipe solution. We offer full-line treatment systems, reverse osmosis, and technical expertise to prescribe the best sustainable solution for your application. Key consideration includes power consumption, space requirements, and quality control.</p> 
+    </div> 
+    <div class="service-feature-block"> 
+     <div class="text-content"> 
+      <h3>Solar Pumping Systems</h3> 
+      <p>Designed for sustained high efficiency, our Solar Pumps (Screw and Centrifugal type) offer a clean and simple alternative to fuel-burning generators for domestic, livestock, and irrigation use. Runs directly from solar panels, saving on running costs. </p> 
+     </div> 
+     <div class="image-placeholder solar-pumps-img"></div> 
+    </div> 
+    <div class="service-feature-block reverse"> 
+     <div class="image-placeholder borehole-img"></div> 
+     <div class="text-content"> 
+      <h3>Borehole Supply and Equipping</h3> 
+      <p>Our team handles everything from drilling to installation, including control panels, submersible pumps, underground cables, piping, and tank connections. We guarantee water treatment safe for drinking, office, and other domestic uses.</p> 
+     </div> 
+    </div> 
+    <div class="service-card"> 
+     <h3>Domestic Water Treatment</h3> 
+     <p>Full line of systems: basic filtration, softeners, domestic reverse osmosis, and UV disinfection systems to protect your family from excessive chlorine and heavy metals in municipal supply.</p> 
+    </div> 
+    <div class="service-card"> 
+     <h3>Maintenance and Technical Support</h3> 
+     <p>Complete maintenance/technical support for your borehole facility, water systems, and solar machinery. Any emergency breakdowns are sorted by our experienced solar technicians and water engineers.</p> 
+    </div> 
+   </section> 
+   <section id="industries"> 
+    <h2>🌍 Market Coverage</h2> 
+    <div class="industry-icons-grid"> 
+     <div class="industry-item"> <span class="icon">🏭</span> 
+      <h3>Food &amp; Dairy Industry</h3> 
+      <p>Advanced RO equipment to eliminate contaminants and sterilize water, ensuring sanitization and increased consumer safety.</p> 
+     </div> 
+     <div class="industry-item"> <span class="icon">🍺</span> 
+      <h3>Beer Brewing Sectors</h3> 
+      <p>Provides purified water for processes, eliminating chlorine and ensuring clean water delivery for production and cleaning.</p> 
+     </div> 
+     <div class="industry-item"> <span class="icon">🔬</span> 
+      <h3>Pharmaceutical</h3> 
+      <p>Reliable water treatment solutions engineered to meet global standards for medical water for injection, reagent, and autoclave.</p> 
+     </div> 
+     <div class="industry-item"> <span class="icon">🏨</span> 
+      <h3>Hotel Resort &amp; Community</h3> 
+      <p>Enables RO provisioning for hotels, resorts, and residential communities, mitigating poor water supply issues.</p> 
+     </div> 
+     <div class="industry-item"> <span class="icon">🏠</span> 
+      <h3>Home &amp; Office Sector</h3> 
+      <p>Offers an extensive line of premium home and office reverse osmosis water purification and water treatment appliances.</p> 
+     </div> 
+     <div class="industry-item"> <span class="icon">🏦</span> 
+      <h3>Public &amp; Private Sectors</h3> 
+      <p>Serving Non-Governmental Institutions (NGOs, CBOs), the general public, and Private Corporations running various industries.</p> 
+     </div> 
+    </div> 
+   </section> 
+  </main> 
+  <footer id="contact"> 
+   <div class="contact-grid"> 
+    <div class="contact-details"> 
+     <h3>Get in Touch</h3> 
+     <p><strong>Location:</strong> 2nd Floor ABC Bank Building | Dar es Salaam Rd., Industrial Area, 18376-00500 Nairobi</p> 
+     <p><strong>Call Us:</strong> +254 721 488 911 | +254 20 200 065 545</p> 
+     <p><strong>Email:</strong> info@riztech.co.ke</p> 
+     <p><strong>Web:</strong> www.riztech.co.ke</p> 
+    </div> 
+    <div class="client-spotlight"> 
+     <h3>Our Valued Partners</h3> 
+     <ul> 
+      <li>Cytonn Investments Management PLC</li> 
+      <li>Multi-Color Corporation (TP Kenya)</li> 
+      <li>ZAGRO Limited AK Otieno</li> 
+      <li>Lynsprings &amp; Merchandise Supplies</li> 
+     </ul> 
+    </div> 
+   </div> 
+   <div class="footer-bottom"> 
+    <p>© 2025 Rizara Technologies Limited. Water for life water to thrive.</p> 
+   </div> 
+  </footer> 
+ 
+</body></html>
