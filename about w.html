@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Rizara Technologies Limited — Sustainable Water &amp; Energy</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <style>
+    /* =======================================================
+       BASE & VARIABLES (Combined and Optimized)
+       ======================================================= */
+    :root {
+        --primary-color: #008000; /* Rizara Green */
+        --secondary-color: #FFC000; /* Rizara Yellow/Gold */
+        --text-dark: #1a1a1a;
+        --text-light: #ffffff;
+        --bg-neutral: #f8f8f8;
+        --shadow-float: 0 10px 30px rgba(0, 0, 0, 0.1);
+        --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        --radius: 12px;
+        --max-width: 1280px;
+
+        /* Service Specific Colors */
+        --solar-accent: #ff8c00; 
+        --water-accent: #1e90ff; 
+        --pump-accent: #8a2be2; 
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 192, 0, 0.4); }
+        70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(255, 192, 0, 0); }
+        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 192, 0, 0); }
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body { 
+        font-family: 'Poppins', sans-serif; 
+        margin: 0; 
+        padding: 0; 
+        color: var(--text-dark); 
+        line-height: 1.7; 
+        background-color: var(--bg-neutral);
+        -webkit-font-smoothing:antialiased;
+        -moz-osx-font-smoothing:grayscale;
+    }
+
+    .container{
+      width:calc(100% - 48px);
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:32px 24px;
+    }
+    section { padding: 80px 0; overflow: hidden; }
+
+    a{color:inherit}
+    img{max-width:100%;display:block}
+
+    /* =======================================================
+       BUTTONS (Standardized)
+       ======================================================= */
+    .btn-primary { 
+        background-color: var(--primary-color); color: var(--text-light); 
+        padding: 12px 25px; text-decoration: none; border-radius: 50px; 
+        font-weight: 600; transition: var(--transition-smooth); display: inline-flex;
+        align-items: center; gap: 8px;
+        box-shadow: 0 6px 15px rgba(0, 128, 0, 0.3);
+    }
+    .btn-primary:hover { 
+        background-color: #005f00; 
+        transform: translateY(-2px); 
+        box-shadow: 0 10px 25px rgba(0, 128, 0, 0.5);
+    }
+    .btn-outline{
+      border:2px solid rgba(0, 128, 0, 0.15);
+      color:var(--primary-color);
+      padding:10px 20px;
+      border-radius:999px;
+      background:transparent;
+      font-weight:600;
+      text-decoration:none;
+      transition:all var(--transition-smooth);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .btn-outline:hover{ background: rgba(0, 128, 0, 0.05); transform:translateY(-2px); border-color: var(--primary-color); }
+    
+    .cta-btn {
+        background:var(--secondary-color);
+        color:var(--text-dark);
+        padding:12px 20px;
+        border-radius:999px;
+        text-decoration:none;
+        font-weight:700;
+        box-shadow:0 8px 22px rgba(0,0,0,0.1);
+        transition:all var(--transition-smooth);
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+    }
+    .cta-btn:hover{ transform:translateY(-2px); box-shadow:0 18px 45px rgba(0,0,0,0.2) }
+
+    /* =======================================================
+       SCROLL REVEAL (Simplified)
+       ======================================================= */
+    .reveal-item { opacity: 1; transform: translateY(0); } /* Defaulting to visible since JS is client-side */
+
+    /* =======================================================
+       HEADER & NAVIGATION
+       ======================================================= */
+    header{
+      position:sticky;
+      top:0;
+      z-index:60;
+      background:rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom:1px solid rgba(10,10,10,0.06);
+    }
+
+    .header-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+      padding:16px 0;
+    }
+
+    .brand img{
+      /* LOGO IMAGE SIZE */
+      height:45px;
+      width:auto
+    }
+
+    nav{ display:flex; gap:24px; align-items:center; }
+
+    nav a{
+      text-decoration:none;
+      color:#666;
+      font-weight:600;
+      font-size:0.95rem;
+      padding:8px 0;
+      transition:all var(--transition-smooth);
+    }
+    nav a:hover, nav a.active { color:var(--primary-color); border-bottom: 2px solid var(--secondary-color); }
+
+    .hamburger{ display:none; } /* Hidden by default for desktop */
+
+    /* =======================================================
+       HERO (Combined Styles)
+       ======================================================= */
+    .hero{
+      display:grid;
+      grid-template-columns:1fr 500px;
+      gap:64px;
+      align-items:center;
+      padding:64px 0 96px;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      background:var(--secondary-color);
+      color:var(--text-dark);
+      padding:8px 16px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:0.85rem;
+      margin-bottom:18px;
+      text-transform:uppercase;
+      letter-spacing:0.5px;
+      box-shadow: 0 4px 10px rgba(255,192,69,0.2);
+    }
+    
+    .hero-title{
+      font-size: clamp(2.5rem, 4.5vw, 3.8rem);
+      line-height:1.1;
+      margin:8px 0 20px;
+      color: var(--primary-color);
+      font-weight:800;
+    }
+    
+    .hero-sub{
+      color:#666;
+      font-size:1.1rem;
+      max-width:60ch;
+      margin-bottom:30px;
+    }
+
+    .hero-actions{ display:flex; gap:16px; flex-wrap:wrap; }
+
+    /* hero visual card - Using background image */
+    .hero-card{
+      /* HERO IMAGE URL HERE */
+      background-image: linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.25)), url('https://i.postimg.cc/V6Dz0R2p/0e34613cee195120991910bd06bb5895.jpg');
+      background-size:cover;
+      background-position:center;
+      min-height:400px;
+      border-radius:var(--radius);
+      box-shadow:0 30px 70px rgba(10,10,10,0.2);
+      display:flex;
+      align-items:flex-end;
+      color:#fff;
+      padding:30px;
+      position:relative;
+      overflow:hidden;
+      transition: transform 600ms cubic-bezier(.2,.9,.2,1);
+      border: 4px solid var(--secondary-color); /* Added border accent */
+    }
+
+    .hero-card .card-inner{
+      position:relative; z-index:2;
+      width:100%;
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      align-items:center;
+      background: rgba(0,0,0,0.4);
+      padding:12px 18px;
+      border-radius:8px;
+      backdrop-filter: blur(2px);
+    }
+    .hero-card .stat strong{font-size:1.4rem; font-weight: 800;}
+    .hero-card .stat span{font-size:0.85rem;color:rgba(255,255,255,0.8)}
+
+    /* =======================================================
+       SERVICES GRID
+       ======================================================= */
+    .section-title{
+      font-size: 2.5em; font-weight: 800; text-align: center; margin-bottom: 50px; 
+      color: var(--primary-color); position: relative;
+    }
+    .services{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:24px;
+    }
+    .card{
+      background:var(--text-light);
+      border-radius:var(--radius);
+      padding:30px;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow:0 4px 12px rgba(0,0,0,0.05);
+      transition:transform var(--transition-smooth), box-shadow var(--transition-smooth);
+      text-align:center;
+      min-height:220px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:15px;
+      text-decoration:none;
+      color:inherit;
+    }
+    .card:hover{ 
+        transform:translateY(-8px);
+        box-shadow:0 15px 40px rgba(0,0,0,0.15); 
+        border-color: var(--primary-color);
+    }
+
+    .card .icon{
+      font-size:2.2rem;
+      width:64px;height:64px;border-radius:50%;
+      background:var(--secondary-color);
+      color:var(--text-dark);
+      margin:0 auto 10px;
+      box-shadow: 0 6px 15px rgba(255,192,69,0.3);
+      display:flex;align-items:center;justify-content:center;
+    }
+
+    .card h3{ margin:0;font-size:1.25rem;color:var(--text-dark); font-weight:700 }
+    .card p{ color:#666; margin:0; font-size:0.95rem }
+    
+    /* Secondary Service Cards (3x) */
+    .services-secondary {
+        grid-template-columns: repeat(2, 1fr) !important;
+        margin-top: 24px;
+    }
+
+
+    /* =======================================================
+       VISION / MISSION
+       ======================================================= */
+    .vm{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:40px;
+      align-items:center;
+    }
+
+    .vm .panel{
+      background:var(--text-light);
+      color:var(--text-dark);
+      padding:40px;
+      border-radius:var(--radius);
+      box-shadow:0 18px 40px rgba(10,10,10,0.08);
+      border-left: 5px solid var(--primary-color);
+    }
+
+    .vm .panel h2{ margin-top:0; font-size:1.8rem; color:var(--primary-color); }
+    .vm .panel h3{ color:var(--text-dark); margin-top:12px; font-weight: 700; font-size: 1.2rem; }
+    .vm .panel p{ color:#666; line-height:1.6 }
+
+    .vm .media{
+      border-radius:var(--radius);
+      box-shadow:0 12px 28px rgba(10,10,10,0.1);
+      overflow: hidden;
+    }
+
+    .vm .media img{ width:100%; height:auto; object-fit:cover; }
+
+    /* =======================================================
+       VALUES (Minimalist)
+       ======================================================= */
+    .values{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:24px;
+      margin-top:40px;
+    }
+
+    .value{
+      background:var(--text-light);
+      border-radius:var(--radius);
+      padding:30px;
+      box-shadow:0 6px 18px rgba(10,10,10,0.03);
+      border-top: 4px solid var(--secondary-color);
+      transition: all var(--transition-smooth);
+    }
+    .value:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(10,10,10,0.1);
+    }
+    .value h3{ margin:0 0 8px; color:var(--text-dark); font-size:1.1rem; }
+    .value p{ margin:0; color:#666; font-size:0.92rem }
+    
+    /* =======================================================
+       CTA & FOOTER
+       ======================================================= */
+    .cta{
+      background: var(--secondary-color);
+      padding:40px;
+      border-radius:12px;
+      display:flex;
+      gap:20px;
+      align-items:center;
+      justify-content:space-between;
+      margin-top:40px;
+      color: var(--text-dark);
+      box-shadow:0 18px 40px rgba(255,192,69,0.25);
+    }
+    .cta h3{ margin:0; color:var(--text-dark); font-size:1.8rem; }
+    .cta p{ margin:6px 0 0; color:var(--text-dark); font-size: 1.05rem; }
+    
+    footer{
+      margin-top:40px;
+      padding:40px 0;
+      color:#fff;
+      background:var(--text-dark);
+      text-align:center;
+      font-size:0.92rem;
+    }
+    footer a{ color: var(--secondary-color); text-decoration: none; }
+    footer .fas{ color: var(--secondary-color); margin-right: 6px; } 
+    footer .info { 
+        display:flex; justify-content:center; gap:30px; margin-bottom:15px; flex-wrap:wrap; color: rgba(255,255,255,0.8);
+    }
+
+
+    /* =======================================================
+       RESPONSIVE
+       ======================================================= */
+    @media (max-width:1000px){
+      .hero{ grid-template-columns:1fr; }
+      .services{ grid-template-columns:repeat(2,1fr) }
+      .services-secondary { grid-template-columns: repeat(1,1fr) !important; }
+      .vm{ grid-template-columns:1fr; }
+      nav{ display:none }
+      .hamburger{ display:inline-flex }
+      .hero-card{ min-height:300px }
+      .cta{ flex-direction:column; align-items:flex-start; text-align: left; }
+      .cta .text{ max-width:100% }
+      .cta > div { width: 100%; }
+      .cta-actions { display: flex; flex-direction: column; gap: 10px; width: 100%; margin-top: 15px; }
+      .cta-actions a { width: 100%; justify-content: center; }
+    }
+
+    @media (max-width:768px){
+      .services, .values{ grid-template-columns:1fr }
+    }
+
+    @media (max-width:640px){
+      .container{ padding:20px; width:calc(100% - 40px) }
+      .section-title { font-size: 1.8em; margin-bottom: 30px; }
+      .hero-title { font-size: clamp(2rem, 8vw, 2.5rem); }
+      .brand img{height:35px;}
+      footer .info { flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container header-row" role="navigation" aria-label="Main navigation">
+      <div class="brand">
+        <a href="index.html" aria-label="Rizara Technologies home">
+          <img src="https://i.postimg.cc/N0XZ6MT9/Rizara-Profile-New-pdf-20251212-132515-0000.png" alt="Rizara Technologies logo">
+        </a>
+      </div>
+
+      <nav aria-hidden="true" id="main-nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact Us</a>
+      
+      </nav>
+
+      <div style="display:flex;align-items:center;gap:12px">
+        <a href="/consultation" class="cta-btn">Get a Consultation</a>
+        <button class="hamburger" id="hambtn" aria-expanded="false" aria-controls="mobile-nav" title="Open menu">
+          <i class="fas fa-bars" style="font-size: 1.2rem; color: #333;"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-nav" class="mobile-nav-panel" style="display:none;">
+      <div class="mobile-nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="/consultation" class="cta-btn" style="width:100%; justify-content:center; margin-top: 15px;">Get a Consultation</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="hero" aria-label="Hero">
+        <div class="hero-left">
+          <div class="eyebrow reveal-item">Water, Power, and Solar Service Provider</div>
+          <h2 class="hero-title reveal-item delay-1">A technology innovator dedicated to developing **sustainable water and renewable energy** in Kenya.</h2>
+          <p class="hero-sub reveal-item delay-2">Rizara Technologies Limited is a water, power, and solar service provider for business in Kenya and the region. We were formed and registered in the year 2015 to enhance the development of water, solar, and power.</p>
+
+          <div class="hero-actions reveal-item delay-3">
+            <a href="services.html" class="btn-primary">Discover Our Solutions <i class="fas fa-arrow-right"></i></a>
+            <a href="contact.html" class="btn-outline">Request a Quote</a>
+          </div>
+        </div>
+
+        <aside class="hero-card reveal-item" aria-hidden="true" role="img" aria-label="Solar and water systems">
+          <div class="card-inner">
+            <div class="stat">
+              <strong>Since 2015</strong>
+              <span>Registered Company</span>
+            </div>
+            <div class="stat">
+              <strong>Water &amp; Solar</strong>
+              <span>Core Specialities</span>
+            </div>
+            <div class="stat">
+              <strong>East Africa</strong>
+              <span>Serving the Region</span>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </div>
+
+    <section class="section" style="background-color: #fcfcfc;" aria-labelledby="services-title">
+      <div class="container">
+        <h3 id="services-title" class="section-title reveal-item">Our Core Products and Services</h3>
+        <div class="services" role="list">
+          <a class="card reveal-item" href="services.html#water-treatment" role="listitem">
+            <div class="icon"><i class="fas fa-filter"></i></div>
+            <h3>Commercial Water Treatment</h3>
+            <p>Design of sustainable water management plans and a full line of reverse osmosis and other treatment systems.</p>
+          </a>
+
+          <a class="card reveal-item delay-1" href="services.html#solar" role="listitem">
+            <div class="icon"><i class="fas fa-sun"></i></div>
+            <h3>Solar Powering Systems</h3>
+            <p>Installation of high-efficiency solar water pumps, controllers, and photovoltaic solar back-up systems.</p>
+          </a>
+
+          <a class="card reveal-item delay-2" href="services.html#borehole" role="listitem">
+            <div class="icon"><i class="fas fa-water-ladder"></i></div>
+            <h3>Borehole Equipping Services</h3>
+            <p>Supply and installation of equipment for borehole drilling, submersible pumps, and control panels.</p>
+          </a>
+        </div>
+        
+        <div class="services services-secondary" role="list">
+           <a class="card reveal-item" href="services.html#domestic" role="listitem">
+            <div class="icon"><i class="fas fa-home"></i></div>
+            <h3>Domestic Water Treatment</h3>
+            <p>Full line of water treatment systems, including basic filtration, softeners, RO, and UV disinfection for home use.</p>
+          </a>
+          
+          <a class="card reveal-item delay-1" href="services.html#maintenance" role="listitem">
+            <div class="icon"><i class="fas fa-tools"></i></div>
+            <h3>Maintenance &amp; Technical Support</h3>
+            <p>Complete support for your borehole, water, power, or solar systems to improve production efficiency.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="vm" aria-label="Vision and mission">
+        <div class="vm .media reveal-item" aria-hidden="true">
+          <img src="https://i.postimg.cc/J4BWRM7K/ff6cec01927922a847bb6c928f5994ed.jpg" alt="Water treatment system showing various pipes and valves">
+        </div>
+
+        <div class="panel reveal-item delay-1" aria-hidden="false">
+          <h2>Our Foundation: Vision &amp; Mission</h2>
+          <h3>Vision</h3>
+          <p>To provide sustainable world-class water, solar, and power solutions within the technological industry in East Africa.</p>
+
+          <h3>Mission</h3>
+          <p>To improve the livelihood of our clients by providing the most innovative modelling and environmentally friendly solutions to enhance safety, improve efficiency, and help solve challenging problems.</p>
+          <a href="about.html" class="btn-outline" style="margin-top: 20px;">Learn More About Us <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </section>
+
+      <section style="margin-top:28px" aria-labelledby="values-title">
+        <h3 id="values-title" class="section-title reveal-item">Core Values: Delivered with Integrity</h3>
+
+        <div class="values">
+          <div class="value reveal-item" style="transition-delay: 0.1s;">
+            <h3>Quality</h3>
+            <p>We are passionate about excellence and doing our work right the first time through our dedicated quality assurance.</p>
+          </div>
+          <div class="value reveal-item" style="transition-delay: 0.2s;">
+            <h3>Reliability</h3>
+            <p>We improve the quality of life in communities where we work by respecting local cultures, engaging local people, and protecting the environment.</p>
+          </div>
+          <div class="value reveal-item" style="transition-delay: 0.3s;">
+            <h3>Punctuality</h3>
+            <p>We take into consideration the importance of meeting deadlines; our projects are delivered on or before the due date.</p>
+          </div>
+        </div>
+      </section>
+
+      <section style="margin-top:28px">
+        <div class="cta reveal-item">
+          <div class="text">
+            <h3>Ready to discuss your project?</h3>
+            <p>We are adequately advanced, equipped, and ready to deliver you with services. Consult with our team to get a tailored proposal.</p>
+          </div>
+          <div class="cta-actions">
+            <a href="contact.html" class="btn-primary" title="Contact Rizara">Contact Us Today <i class="fas fa-paper-plane"></i></a>
+            <a href="tel:+254721488911" class="btn-outline">Call: +254 721 488 911</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container reveal-item">
+        <div class="info">
+            <p style="margin:0;"><i class="fas fa-map-marker-alt"></i> 2nd Floor ABC Bank Building, Dar es Salaam Rd., Industrial Area</p>
+            <p style="margin:0;"><i class="fas fa-phone"></i> +254 721 488 911 | +254 777 488 911</p>
+            <p style="margin:0;"><i class="fas fa-envelope"></i> <a href="mailto:info@riztech.co.ke">info@riztech.co.ke</a></p>
+        </div>
+      <hr style="border-color:rgba(255,255,255,0.1);margin:15px 0;">
+      <p style="margin:0; font-size: 0.85rem; color: rgba(255,255,255,0.6);">© 2025 Rizara Technologies Limited. All Rights Reserved. **Water for life — water to thrive.**</p>
+    </div>
+  </footer>
+
+  <script>
+    // Simplified JavaScript to ensure mobile menu functionality
+    const hambtn = document.getElementById('hambtn');
+    const mnav = document.getElementById('mobile-nav'); 
+
+    hambtn && hambtn.addEventListener('click', () => {
+      const expanded = hambtn.getAttribute('aria-expanded') === 'true';
+      hambtn.setAttribute('aria-expanded', String(!expanded));
+      if (!expanded) {
+        mnav.style.display = 'block';
+      } else {
+        mnav.style.display = 'none';
+      }
+    });
+
+    // Close mobile nav on outside click (nice UX)
+    document.addEventListener('click', (e) => {
+      const target = e.target;
+      if (!target.closest('header')) {
+        if (mnav && mnav.style.display === 'block') {
+          mnav.style.display = 'none';
+          hambtn && hambtn.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+  </script>
+
+
+</body></html>
+
+    
