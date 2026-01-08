@@ -58,7 +58,7 @@
             overflow: hidden;
         }
         
-        /* --- Animation Keyframes (Retained) --- */
+        /* --- Animation Keyframes --- */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -99,9 +99,8 @@
             border-bottom-color: var(--color-brand-yellow);
         }
         
-        /* --- Header & Navigation (Transparent - Fix Applied) --- */
+        /* --- Header & Navigation --- */
         header {
-            /* Changed to transparent black with slight opacity */
             background: rgba(26, 26, 26, 0.8);
             backdrop-filter: blur(5px);
             color: var(--color-text-light);
@@ -120,7 +119,6 @@
             font-size: 1.6rem;
             font-weight: 300;
         }
-        /* Style for the 'Technologies Limited' part, now in a span */
         header .logo span {
             font-weight: 700;
             color: var(--color-brand-yellow);
@@ -179,7 +177,7 @@
             transform: translateY(-2px);
         }
 
-        /* --- Products and Services (Split Layout) --- */
+        /* --- Products and Services --- */
         #products {
             background-color: var(--color-background-main);
         }
@@ -237,10 +235,9 @@
             background-size: cover;
             background-position: center;
             min-height: 150px;
-            transition: opacity 0.5s; /* Added for smoother rendering */
+            transition: opacity 0.5s;
         }
         
-        /* Specific Image URLs for Feature Blocks (Original Design Restored) */
         .solar-pumps-img {
             background-image: url('https://i.postimg.cc/3NzQqBV1/6e0f4503a1c58a5cc439b6bf6d9d15a5.jpg');
         }
@@ -318,33 +315,32 @@
             border-bottom: 1px solid #282828;
         }
 
-        .contact-details, .client-spotlight {
-            max-width: 45%;
+        .contact-details {
+            max-width: 600px;
             padding: 0 15px;
+            text-align: center;
+            flex: 1;
         }
 
-        .contact-details h3, .client-spotlight h3 {
+        .contact-details h3 {
             color: var(--color-brand-yellow);
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
         }
 
         .contact-details p {
             margin-bottom: 0.5rem;
         }
-
-        .client-spotlight ul {
-            list-style-type: none;
-            padding-left: 0;
+        .contact-details a {
+            color: var(--color-text-light);
         }
-        .client-spotlight ul li {
-            padding: 3px 0;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        .contact-details a:hover {
+            color: var(--color-brand-yellow);
         }
 
         .footer-bottom {
             text-align: center;
-            padding: 10px 5%;
+            padding: 20px 5%;
             font-size: 0.8rem;
             opacity: 0.7;
         }
@@ -358,16 +354,13 @@
             .service-feature-block {
                 flex-direction: column;
             }
-            /* Ensures reverse layout also stacks vertically on mobile */
             .service-feature-block.reverse {
                 flex-direction: column; 
             }
             .service-feature-block .image-placeholder {
-                /* Ensures image is visible at the top when stacking */
                 order: -1; 
             }
             .service-feature-block.reverse .image-placeholder {
-                /* Ensures image remains at the top even when reversed */
                 order: -1; 
             }
         }
@@ -393,7 +386,7 @@
                 flex-direction: column;
                 gap: 30px;
             }
-            .contact-details, .client-spotlight {
+            .contact-details {
                 max-width: 100%;
                 padding: 0;
             }
@@ -478,24 +471,24 @@
    <div class="contact-grid"> 
     <div class="contact-details"> 
      <h3>Get in Touch</h3> 
-     <p><strong>Location:</strong> 2nd Floor ABC Bank Building | Dar es Salaam Rd., Industrial Area, 18376-00500 Nairobi</p> 
-     <p><strong>Call Us:</strong> +254 721 488 911 | +254 20 200 065 545</p> 
-     <p><strong>Email:</strong> info@riztech.co.ke</p> 
-     <p><strong>Web:</strong> www.riztech.co.ke</p> 
-    </div> 
-    <div class="client-spotlight"> 
-     <h3>Our Valued Partners</h3> 
-     <ul> 
-      <li>Cytonn Investments Management PLC</li> 
-      <li>Multi-Color Corporation (TP Kenya)</li> 
-      <li>ZAGRO Limited AK Otieno</li> 
-      <li>Lynsprings &amp; Merchandise Supplies</li> 
-     </ul> 
+     <p><strong>Location:</strong> Syokimau, Katani Rd., Nairobi, Kenya</p> 
+     <p><strong>Saf:</strong> <a href="tel:0721488911">0721 488 911</a></p> 
+     <p><strong>Telkom:</strong> <a href="tel:0777488911">0777 488 911</a></p> 
+     <p><strong>Airtel:</strong> <a href="tel:0737488911">0737 488 911</a></p> 
+     <p><strong>Email:</strong> <a href="mailto:info@riztech.co.ke">info@riztech.co.ke</a></p> 
+     <p><strong>Alt Email:</strong> <a href="mailto:rizaratechnologiesltd@gmail.com">rizaratechnologiesltd@gmail.com</a></p> 
     </div> 
    </div> 
    <div class="footer-bottom"> 
     <p>© 2025 Rizara Technologies Limited. Water for life water to thrive.</p> 
    </div> 
   </footer> 
- 
-</body></html>
+ </body>
+</html>```
+
+
+
+
+
+
+            
